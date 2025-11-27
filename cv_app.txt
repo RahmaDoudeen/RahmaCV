@@ -1,0 +1,464 @@
+import streamlit as st
+from PIL import Image
+import plotly.graph_objects as go
+import pandas as pd
+
+# -----------------------------------------------------------------------------
+# 1. CONFIGURATION (LINKS)
+# -----------------------------------------------------------------------------
+URL_FULL_CV = "https://drive.google.com/file/d/1d5LCtourYdfl9p8DVOUazQ-ujXO6Wlui/view?usp=drive_link" 
+
+# Card A: European Fellowship in Nuclear Medicine
+URL_EBNM_CERT = "https://drive.google.com/file/d/16GgpQUfCD224tQaeaANb5xJeVNbrEfd2/view?usp=drive_link"
+URL_EBNM_VERIFY = "https://uems.eanm.org/commitees/fellowship-committee/ebnm-fellows/" 
+
+# Card B: American Board
+URL_CBNC_CERT = "https://drive.google.com/file/d/1xa6w0kkShKW4O9D6juKX8l0I9owjpHdI/view?usp=drive_link"
+URL_APCA_VERIFY = "https://www.apca.org/directory-of-registrants/" 
+
+# Card C: European Board of Nuclear Cardiology
+URL_EACVI_CERT = "https://drive.google.com/file/d/1BrIAQ-QpXh5CyKcbhPul5mjn4Tct-wZm/view?usp=drive_link"
+URL_EACVI_VERIFY = "https://www.escardio.org/Education/Career-Development/Certification/certified-healthcare-professionals-in-imaging" 
+
+# Card D: Jordanian Board of Nuclear Medicine
+URL_JORDAN_BOARD = "https://drive.google.com/file/d/1ABGIAeb2NJ6m_Eg03s46khF30f6aji9W/view?usp=drive_link"
+URL_JORDAN_LICENSE = "https://drive.google.com/file/d/1ABGIAeb2NJ6m_Eg03s46khF30f6aji9W/view?usp=drive_link"
+
+# -----------------------------------------------------------------------------
+# 2. DESIGN SYSTEM: "BIO-NUCLEAR LUXURY"
+# -----------------------------------------------------------------------------
+st.set_page_config(page_title="Dr. Rahma Doudeen", page_icon="☢️", layout="wide")
+
+st.markdown("""
+    <style>
+    /* STREAMLIT THEME OVERRIDES (remove fuchsia, enforce cyan) */
+    :root {
+        --primary-color: #22D3EE;
+        --primary-color-light: #22D3EE;
+        --secondary-background-color: #0F201B;
+        --text-color: #E2E8F0;
+        --font: 'Montserrat', sans-serif;
+    }
+
+    /* IMPORT FONTS */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800&family=Montserrat:wght@300;400;600;800&display=swap');
+
+    /* BACKGROUND */
+    .stApp {
+        background-color: #0A1F1C; 
+        background-image: radial-gradient(circle at 50% 0%, #14332A 0%, #05110E 100%);
+        color: #E8F5E9;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* HEADERS */
+    h1 {
+        font-family: 'Playfair Display', serif;
+        color: #F0C642 !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 3.5rem !important;
+        margin-bottom: 0px;
+        line-height: 1.1;
+        text-shadow: 0 0 25px rgba(240, 198, 66, 0.3);
+    }
+    
+    /* ROLES & SUB-HEADERS */
+    .role-title {
+        font-family: 'Montserrat', sans-serif;
+        color: #22D3EE;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        text-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+    }
+    .sub-header {
+        font-family: 'Montserrat', sans-serif;
+        color: #E2E8F0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    /* Section subtitles inside experience cards */
+    .exp-subtitle {
+        color:#E2E8F0;
+        font-family:'Montserrat', sans-serif;
+        font-weight:700;
+        font-size:1.2rem;
+        margin-bottom:6px;
+    }
+
+    /* SECTION DIVIDERS */
+    h3 {
+        font-family: 'Playfair Display', serif;
+        color: #FFFFFF !important;
+        border-bottom: 2px solid #F0C642;
+        padding-bottom: 15px;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 1.8rem;
+    }
+
+    /* CARDS */
+    div[data-testid="column"] {
+        background: rgba(20, 50, 40, 0.4); 
+        border: 1px solid rgba(240, 198, 66, 0.2); 
+        border-radius: 4px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+    }
+    div[data-testid="column"]:hover {
+        background: rgba(20, 50, 40, 0.7);
+        border-color: #22D3EE;
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+        transform: translateY(-3px);
+    }
+
+    /* TEXT */
+    h4 {
+        color: #F0C642 !important;
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        font-size: 1.25rem !important;
+        min-height: 4.5rem;
+        line-height: 1.3 !important;
+    }
+    p, li, span, div {
+        color: #E2E8F0;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    /* BUTTONS */
+    .art-btn {
+        display: block;
+        width: 100%;
+        background: linear-gradient(135deg, #0891B2 0%, #0E7490 100%);
+        color: white !important;
+        text-align: center;
+        padding: 14px;
+        border-radius: 2px;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        margin-top: 15px;
+        transition: 0.3s;
+        border: 1px solid #0891B2;
+    }
+    .art-btn:hover { 
+        background: #22D3EE; 
+        color: #05110E !important;
+        border-color: #22D3EE;
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+    }
+    
+    .ver-btn {
+        display: block;
+        width: 100%;
+        background: transparent;
+        border: 1px solid #22D3EE;
+        color: #22D3EE !important;
+        text-align: center;
+        padding: 10px;
+        border-radius: 2px;
+        text-decoration: none;
+        font-size: 0.8rem;
+        margin-top: 8px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    .ver-btn:hover { background: rgba(34, 211, 238, 0.1); color: white !important; }
+
+    /* PROFILE PIC */
+    img {
+        border-radius: 50%;
+        border: 4px solid #F0C642; 
+        box-shadow: 0 0 40px rgba(34, 211, 238, 0.5), 0 0 15px rgba(240, 198, 66, 0.6);
+        display: block;
+        object-fit: cover;
+    }
+
+    /* EXPERIENCE BOX */
+    .exp-card {
+        background: rgba(20, 40, 35, 0.5);
+        border-left: 4px solid #22D3EE;
+        padding: 25px;
+        height: 100%;
+    }
+    
+    /* ICONS */
+    .icon-large {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    /* HIDE UI */
+    #MainMenu {visibility: hidden;} 
+    footer {visibility: hidden;} 
+    header {visibility: hidden;}
+    .block-container { padding-top: 3rem; }
+    </style>
+""", unsafe_allow_html=True)
+
+# -----------------------------------------------------------------------------
+# 3. IDENTITY (smaller photo)
+# -----------------------------------------------------------------------------
+c_pic, c_text = st.columns([1.2, 3.8]) 
+
+with c_pic:
+    try:
+        image = Image.open('profile_pic.png')
+        # Slightly smaller profile photo
+        st.image(image, width=260) 
+    except:
+        st.warning("⚠️ Add 'profile_pic.png'")
+
+with c_text:
+    st.markdown("<h1>Rahma M. Doudeen, MD</h1>", unsafe_allow_html=True)
+    st.markdown("<h1>FEBNM, CBNC</h1>", unsafe_allow_html=True)
+    st.markdown('<div class="role-title">Nuclear Medicine Physician</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sub-header">Board Certified in Nuclear Medicine & Nuclear Cardiology</div>', unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div style="margin-top: 25px; color: #C1C7C5; font-size: 1.1rem; font-family: 'Montserrat', sans-serif;">
+    <span style="color:#F0C642">📞</span> +962795050618 &nbsp;&nbsp; 
+    <span style="color:#F0C642">✉️</span> rahma_doudeen@yahoo.com &nbsp;&nbsp; 
+    <span style="color:#F0C642">📍</span> Amman, Jordan
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown(
+        f'<a href="{URL_FULL_CV}" target="_blank" class="art-btn" '
+        'style="width:fit-content; padding: 12px 40px; background: #F0C642; '
+        'color:#0F201B!important; border-color:#F0C642; font-weight:800; '
+        'margin-top:25px; font-size:1rem;">📄 VIEW FULL CV</a>',
+        unsafe_allow_html=True
+    )
+
+st.write("---")
+
+# -----------------------------------------------------------------------------
+# 4. TIER 1: BOARD CERTIFICATIONS
+# -----------------------------------------------------------------------------
+st.markdown("<h3>📜 Board Certifications</h3>", unsafe_allow_html=True)
+c1, c2, c3, c4 = st.columns(4)
+
+def card_btn(url, text, style="primary"):
+    cls = "art-btn" if style == "primary" else "ver-btn"
+    return f'<a href="{url}" target="_blank" class="{cls}">{text}</a>'
+
+with c1:
+    st.markdown("#### European Fellowship in Nuclear Medicine")
+    st.caption("UEMS – European Board of Nuclear Medicine, Hamburg, Germany")
+    st.markdown("**Status: FEBNM Fellow**")
+    st.markdown(card_btn(URL_EBNM_CERT, "View Fellowship Certificate"), unsafe_allow_html=True)
+    st.markdown(card_btn(URL_EBNM_VERIFY, "Verification", "sec"), unsafe_allow_html=True)
+
+with c2:
+    st.markdown("#### Certification Board of Nuclear Cardiology")
+    st.caption("American Board – Alliance for Physician Certification and Advancement (APCA)")
+    st.markdown("**Status: Diplomate**")
+    st.markdown(card_btn(URL_CBNC_CERT, "View CBNC Certificate"), unsafe_allow_html=True)
+    st.markdown(card_btn(URL_APCA_VERIFY, "Verification", "sec"), unsafe_allow_html=True)
+
+with c3:
+    st.markdown("#### European Board of Nuclear Cardiology")
+    st.caption("European Association of Cardiovascular Imaging (EACVI)")
+    st.markdown("**Status: Fully Certified**")
+    st.markdown(card_btn(URL_EACVI_CERT, "View Certificate"), unsafe_allow_html=True)
+    st.markdown(card_btn(URL_EACVI_VERIFY, "Verification", "sec"), unsafe_allow_html=True)
+
+with c4:
+    st.markdown("#### National Qualification")
+    st.caption("Jordanian Board of Nuclear Medicine – Jordan Medical Council")
+    st.markdown("**Status: Board Certified Specialist**")
+    st.markdown(card_btn(URL_JORDAN_BOARD, "View Board Certificate"), unsafe_allow_html=True)
+    # Same style as View Board Certificate
+    st.markdown(card_btn(URL_JORDAN_LICENSE, "My Professional License"), unsafe_allow_html=True)
+
+# -----------------------------------------------------------------------------
+# 5. TIER 2: CLINICAL EXPERIENCE
+# -----------------------------------------------------------------------------
+st.markdown("<h3>🏥 Clinical Experience & Residency</h3>", unsafe_allow_html=True)
+
+e1, e2 = st.columns(2)
+
+with e1:
+    st.markdown("""
+    <div class="exp-card">
+        <div class="icon-large">🎓</div>
+        <h4 style="margin-top:0;">Joint Nuclear Medicine Residency Program</h4>
+        <p class="exp-subtitle">King Hussein Cancer Center (KHCC) &amp; University of Jordan</p>
+        <p>Comprehensive residency training covering theranostics, advanced oncological and general nuclear medicine.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with e2:
+    st.markdown("""
+    <div class="exp-card">
+        <div class="icon-large">⚕️</div>
+        <h4 style="margin-top:0;">Clinical Training in Nuclear Medicine</h4>
+        <p class="exp-subtitle">National Center for Diabetes, Endocrinology and Genetics (NCDEG)</p>        
+    </div>
+    """, unsafe_allow_html=True)
+
+st.write("---")
+
+# -----------------------------------------------------------------------------
+# 6. TIER 3: GLOBAL MAP
+# -----------------------------------------------------------------------------
+st.markdown("<h3>🌍 Global Professional Affiliations</h3>", unsafe_allow_html=True)
+
+map_col, list_col = st.columns([2, 1.5])
+
+with map_col:
+    lats = [45, 50, 31, -25, 0]
+    lons = [-100, 15, 36, 135, 0]
+    hover_txt = ["North America", "Europe", "Middle East", "Oceania", "Global"]
+
+    fig = go.Figure(data=go.Scattergeo(
+        lon=lons,
+        lat=lats,
+        text=hover_txt,
+        mode='markers',
+        marker=dict(size=25, color='#22D3EE', line=dict(width=2, color='#F0C642'))
+    ))
+
+    fig.update_geos(
+        projection_type="orthographic",
+        showcountries=True, countrycolor="#555",
+        showland=True, landcolor="#14332A", 
+        showocean=True, oceancolor="#0F201B", 
+        bgcolor="#0F201B"
+    )
+    fig.update_layout(
+        height=500, 
+        margin={"r":0,"t":0,"l":0,"b":0}, 
+        paper_bgcolor="#0F201B", 
+        font=dict(color="white")
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+
+with list_col:
+    st.markdown("""
+    <div style="background:rgba(0,0,0,0.2); padding:20px; border-radius:10px; border:1px solid #F0C642;">
+    
+    <b style="color:#F0C642">NORTH AMERICA</b><br>
+    • SNMMI: Society of Nuclear Medicine and Molecular Imaging<br>
+    • ACNM: American College of Nuclear Medicine<br>
+    • ASNC: American Society of Nuclear Cardiology<br>
+    • SCCT: Society of Cardiovascular Computed Tomography<br>
+    • ASCO: American Society of Clinical Oncology<br>
+    • ARRS: American Roentgen Ray Society<br>
+    • CANM: Canadian Association of Nuclear Medicine<br><br>
+
+    <b style="color:#F0C642">EUROPE</b><br>
+    • EANM: European Association of Nuclear Medicine<br>
+    • EACVI: European Association of Cardiovascular Imaging<br>
+    • ESMO: European Society for Medical Oncology<br>
+    • ESR: European Society of Radiology<br>
+    • BNMS: British Nuclear Medicine Society<br><br>
+
+    <b style="color:#F0C642">MIDDLE EAST</b><br>
+    • ARSNM: Arab Society of Nuclear Medicine<br>
+    • JMA: Jordan Medical Association<br><br>
+
+    <b style="color:#F0C642">OCEANIA & INTERNATIONAL</b><br>
+    • ANZSNM: Australian and New Zealand Society of Nuclear Medicine<br>
+    • WiN Global: Women in Nuclear Global<br>
+    • IC-OS: International Cardio-Oncology Society<br>
+    • SIIM: Society for Imaging Informatics in Medicine
+    </div>
+    """, unsafe_allow_html=True)
+
+# -----------------------------------------------------------------------------
+# 7. TIER 4: COMPETENCIES & HONORS
+# -----------------------------------------------------------------------------
+st.markdown("<h3>☢️ Clinical Competencies & Honors</h3>", unsafe_allow_html=True)
+z1, z2, z3 = st.columns(3)
+
+with z1:
+    st.markdown("""
+    <div class="exp-card">
+    <div class="icon-large">🫀</div>
+    <h4>Nuclear Cardiology</h4>
+    <b>Modalities:</b><br>
+    • Cardiac Amyloidosis<br>
+    • Cardiac Sarcoidosis<br>
+    • Myocardial blood flow (MBF) and F-18 PET<br>
+    • D-SPECT<br><br>
+    <b>Software:</b><br>
+    • Cedars-Sinai – The Cardiac Suite utilized<br>
+    • Emory Toolbox software utilized<br>
+    • 4DM by INVIA utilized<br>
+    • ImagenQ by CVIT software utilized
+    </div>
+    """, unsafe_allow_html=True)
+
+with z2:
+    st.markdown("""
+    <div class="exp-card">
+    <div class="icon-large">🧠</div>
+    <h4>Nuclear Neurology</h4>
+    <b>Modalities:</b><br>
+    • Neuro-PET (dementia and epilepsy)<br>
+    • DaTscan imaging<br>
+    • FDG-PET (non-Alzheimer’s)<br>
+    • FDG-PET/CT (dementia and epilepsy)<br>
+    • Amyloid PET/CT<br><br>
+    <b>Software:</b><br>
+    • MIMneuro™ software
+    </div>
+    """, unsafe_allow_html=True)
+
+with z3:
+    st.markdown("""
+    <div class="exp-card">
+    <div class="icon-large">🏆</div>
+    <h4>Honors & Involvement</h4>
+    • <b>ASNC Future Leaders Program:</b> Selected as one of the "Next Generation of Nuclear Cardiology" leaders, Toronto, Canada.<br><br>
+    • <b>Speaker & Faculty Member:</b> Nuclear Cardiology Now Middle East Conference (ASNC).<br><br>
+    • <b>Grant Reviewer:</b> 2025 SNMMI Molecular Imaging Research Grant for Junior Academic Faculty (USD 105,000 grant).
+    </div>
+    """, unsafe_allow_html=True)
+
+# -----------------------------------------------------------------------------
+# 8. FOOTER
+# -----------------------------------------------------------------------------
+st.write("---")
+f1, f2, f3 = st.columns(3)
+
+with f1:
+    st.markdown("""
+    <div style="border-left:3px solid #F0C642; padding-left:10px;">
+        <div style="color:#22D3EE; font-weight:bold; text-transform:uppercase;">Editorial Role 📝</div>
+        <div>Reviewer for high-impact journals including Journal of Clinical Oncology (JCO) (Q1, 43.4 IF).</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with f2:
+    st.markdown("""
+    <div style="border-left:3px solid #F0C642; padding-left:10px;">
+        <div style="color:#22D3EE; font-weight:bold; text-transform:uppercase;">Committee Membership 🤝</div>
+        <div>American Society of Nuclear Cardiology (ASNC) International Committee and American College of Nuclear Medicine (ACNM) Radiopharmaceutical Therapy Committee.</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with f3:
+    st.markdown("""
+    <div style="border-left:3px solid #F0C642; padding-left:10px;">
+        <div style="color:#22D3EE; font-weight:bold; text-transform:uppercase;">Publications 📚</div>
+        <div>More than 10 peer-reviewed articles, abstracts, and learning modules as first author and co-author.</div>
+    </div>
+    """, unsafe_allow_html=True)
