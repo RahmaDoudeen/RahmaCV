@@ -1,5 +1,0 @@
-Plaintext
-streamlit
-plotly
-pandas
-pillow
