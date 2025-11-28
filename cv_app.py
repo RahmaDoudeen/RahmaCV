@@ -17,7 +17,7 @@ URL_JORDAN_BOARD = "https://drive.google.com/file/d/1ABGIAeb2NJ6m_Eg03s46khF30f6
 URL_JORDAN_LICENSE = "https://drive.google.com/file/d/18Wd9dLfqa2MwPcgjN9l8jjEDYhFqrhtr/view?usp=drive_link"
 
 # -----------------------------------------------------------------------------
-# 2. DESIGN SYSTEM (CSS)
+# 2. DESIGN SYSTEM: "GENSLER BIO-NUCLEAR LUXURY"
 # -----------------------------------------------------------------------------
 st.set_page_config(page_title="Dr. Rahma Doudeen", page_icon="🌿", layout="wide")
 
@@ -34,7 +34,7 @@ st.markdown("""
         font-family: 'Montserrat', sans-serif;
     }
 
-    /* HEADERS & TYPOGRAPHY */
+    /* HEADERS: CHAMPAGNE GOLD */
     h1 {
         font-family: 'Playfair Display', serif;
         color: #F0C642 !important; /* Champagne Gold */
@@ -46,43 +46,42 @@ st.markdown("""
         text-shadow: 0 0 25px rgba(240, 198, 66, 0.3);
     }
     
-    /* MOBILE OPTIMIZATION */
-    @media only screen and (max-width: 600px) {
-        h1 { font-size: 1.8rem !important; text-align: center; }
-        .role-title { font-size: 1.0rem !important; text-align: center; }
-        .sub-header { font-size: 0.9rem !important; text-align: center; font-style: italic;}
-        img { margin: 0 auto !important; width: 140px !important; }
-    }
-
-    /* SPECIFIC TITLE SIZES */
+    /* ROLE TITLE (Cyan) */
     .role-title {
-        font-family: 'Lato', sans-serif; 
-        color: #FB7185; /* Rose-Terracotta */
-        font-size: 1.7rem; /* LARGER FONT */
-        font-weight: 900; 
+        font-family: 'Montserrat', sans-serif; 
+        color: #22D3EE; /* Electric Cyan */
+        font-size: 1.7rem; 
+        font-weight: 900;
         letter-spacing: 3px;
         margin-top: 5px;
+        text-transform: uppercase;
+        text-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
     }
+    
+    /* SUB-HEADER (Bold & Larger) */
     .sub-header {
         font-family: 'Playfair Display', serif;
-        color: #38BDF8; /* Cyan Blue */
-        font-size: 1.4rem; /* LARGER FONT */
-        font-weight: 700;
-        margin-top: 5px;
+        color: #E07A5F; /* Pink Terracotta (Warmth) */
+        font-size: 1.5rem; 
+        font-weight: 800;
+        margin-top: 10px;
         font-style: italic;
     }
 
-    /* GENERAL TEXT STYLING */
+    /* SECTION DIVIDERS */
     h3 {
         font-family: 'Playfair Display', serif;
         color: #FFFFFF !important;
         border-bottom: 2px solid #F0C642;
         padding-bottom: 15px;
         margin-top: 60px;
+        margin-bottom: 30px;
         text-transform: uppercase;
         letter-spacing: 2px;
         font-size: 1.8rem;
     }
+
+    /* CARD TITLES */
     h4 {
         color: #F0C642 !important;
         font-family: 'Playfair Display', serif;
@@ -92,7 +91,23 @@ st.markdown("""
         line-height: 1.3 !important;
     }
 
-    /* CARD STYLING */
+    /* INSTITUTION NAMES (Bold & Clear) */
+    .institution-text-card {
+        color: #E07A5F !important; /* Pink Terracotta */
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+    
+    /* EXPERIENCE INSTITUTION (Larger & Distinct) */
+    .experience-institute {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem !important; 
+        font-weight: 700;
+        color: #22D3EE !important; /* Cyan */
+        line-height: 1.4;
+    }
+
+    /* CARDS: ARCHITECTURAL GLASS */
     div[data-testid="column"] {
         background: rgba(20, 50, 40, 0.4); 
         border: 1px solid rgba(240, 198, 66, 0.15); 
@@ -100,41 +115,50 @@ st.markdown("""
         padding: 25px;
         backdrop-filter: blur(5px);
     }
-    .institution-text-card {
-        color: #F0C642 !important; 
-        font-size: 1.05rem;
-        font-weight: 700;
-    }
-    .experience-institute {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.25rem !important; 
-        font-weight: 600;
-        color: #22D3EE !important;
-    }
 
-    /* BUTTONS */
+    /* BUTTONS: GOLD & CYAN PRIMARY */
     .art-btn {
-        display: block; width: 100%; background: linear-gradient(135deg, #BE123C 0%, #9F1239 100%); 
-        color: white !important; padding: 14px; border-radius: 2px; font-weight: 700;
-        text-transform: uppercase; font-size: 0.85rem; margin-top: 15px; border: 1px solid #BE123C;
+        display: block; width: 100%; 
+        background: linear-gradient(135deg, #F0C642 0%, #D9A800 100%); /* Gold */
+        color: #0F201B !important; padding: 14px; border-radius: 4px; font-weight: 800;
+        text-transform: uppercase; font-size: 0.85rem; margin-top: 15px; border: 1px solid #F0C642;
+        text-decoration: none; text-align: center;
     }
     
+    /* BUTTONS: VERIFICATION */
     .ver-btn {
-        display: block; width: 100%; background: transparent; border: 1px solid #FB7185; 
-        color: #FB7185 !important; padding: 10px; border-radius: 2px; font-size: 0.8rem;
-        margin-top: 8px; text-transform: uppercase; font-weight: 600;
+        display: block; width: 100%; background: transparent; border: 1px solid #22D3EE; 
+        color: #22D3EE !important; padding: 10px; border-radius: 4px; font-size: 0.8rem;
+        margin-top: 8px; text-transform: uppercase; font-weight: 600; text-decoration: none; text-align: center;
     }
 
-    /* PROFILE PIC */
-    img {
-        border-radius: 50%;
-        border: 4px solid #F0C642; 
-        box-shadow: 0 0 40px rgba(34, 211, 238, 0.5), 0 0 15px rgba(240, 198, 66, 0.6);
-        display: block;
-        object-fit: cover;
+    /* FIX: PHOTO RADIATING HALO & POSITION */
+    /* Forces image specifically inside Streamlit columns */
+    div[data-testid="stImage"] img {
+        border-radius: 50% !important;
+        border: 4px solid #F0C642 !important; /* Gold Ring */
+        /* Radiating Glow (Not pulsating, just strong static radiation) */
+        box-shadow: 0 0 20px #22D3EE, 0 0 40px #22D3EE, 0 0 60px rgba(34, 211, 238, 0.4) !important;
+        object-fit: cover !important;
+        margin-top: 35px !important; /* Displace Downward */
     }
 
-    /* FOOTER FONT */
+    /* GLOBAL LIST TEXT */
+    .global-list {
+        font-size: 0.95rem;
+        color: #E8F5E9;
+        line-height: 1.6;
+    }
+    .global-header {
+        color: #F0C642;
+        font-weight: 800;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #22D3EE;
+        padding-bottom: 5px;
+    }
+    
+    /* FOOTER FONT - WAY LARGER */
     .footer-label {
         color: #FB7185 !important;
         font-size: 1.3rem !important; 
@@ -145,40 +169,32 @@ st.markdown("""
         font-size: 1.15rem !important; 
     }
 
+    /* MOBILE OPTIMIZATION */
+    @media only screen and (max-width: 600px) {
+        h1 { font-size: 1.8rem !important; text-align: center; }
+        .role-title { font-size: 1.1rem !important; text-align: center; }
+        .sub-header { font-size: 1.0rem !important; text-align: center; }
+        /* Reset margins on mobile so it centers properly */
+        div[data-testid="stImage"] img { margin: 0 auto !important; width: 160px !important; margin-top: 0px !important; }
+        .experience-institute { font-size: 1.2rem !important; }
+    }
+
     /* HIDE UI */
     #MainMenu {visibility: hidden;} footer {visibility: hidden;} header {visibility: hidden;}
-    .block-container { padding-top: 3rem; }
+    .block-container { padding-top: 2rem; }
     </style>
 """, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# 3. GLOBAL DATA (Content)
-# -----------------------------------------------------------------------------
-# Map Data setup
-map_data = {
-    "Region": ["North America", "Europe", "Middle East", "Oceania", "Global"],
-    "lat": [45, 50, 31, -25, 0],
-    "lon": [-100, 15, 36, 135, 0],
-    "Hover_Text": [
-        "<b>NORTH AMERICA:</b><br>• SNMMI<br>• ACNM<br>• ASNC<br>• SCCT<br>• ASCO<br>• ARRS<br>• CANM",
-        "<b>EUROPE:</b><br>• EANM<br>• EACVI<br>• ESMO<br>• ESR<br>• BNMS",
-        "<b>MIDDLE EAST:</b><br>• ARSNM<br>• Jordan Medical Assoc.",
-        "<b>OCEANIA:</b><br>• ANZSNM",
-        "<b>GLOBAL:</b><br>• WiN Global<br>• IC-OS<br>• SIIM"
-    ]
-}
-df = pd.DataFrame(map_data)
-# Plotly figure initialization is done in the section 
-
-# -----------------------------------------------------------------------------
-# 4. IDENTITY SECTION (CONTENT)
+# 3. IDENTITY SECTION (Photo Left, Text Right)
 # -----------------------------------------------------------------------------
 c_pic, c_text = st.columns([1.2, 3.8])
 
 with c_pic:
     try:
         image = Image.open('profile_pic.png')
-        st.image(image, width=230) 
+        # Scaled to fit nearby text
+        st.image(image, width=220) 
     except:
         st.warning("⚠️ Add 'profile_pic.png'")
 
@@ -193,13 +209,13 @@ with c_text:
     </div>
     """, unsafe_allow_html=True)
     
-    # CV Button (CENTERED)
-    st.markdown(f'''<div style="text-align:center; width:100%;"><a href="{URL_FULL_CV}" target="_blank" class="art-btn" style="width:fit-content; padding: 12px 40px; background: #F0C642; color:#0F201B!important; border-color:#F0C642; font-weight:800; margin-top:25px; font-size:1rem;">📄 VIEW FULL CV</a></div>''', unsafe_allow_html=True)
+    # FIX: Button aligned to the LEFT (Removed "center" tags)
+    st.markdown(f'<a href="{URL_FULL_CV}" target="_blank" class="art-btn" style="width:fit-content; padding: 12px 40px; background: #F0C642; color:#0F201B!important; border-color:#F0C642; font-weight:800; margin-top:25px; font-size:1rem;">📄 VIEW FULL CV</a>', unsafe_allow_html=True)
 
 st.write("---")
 
 # -----------------------------------------------------------------------------
-# 5. TIER 1: BOARD CERTIFICATIONS (Pillars)
+# 4. BOARD CERTIFICATIONS
 # -----------------------------------------------------------------------------
 st.markdown("<h3>📜 Board Certifications</h3>", unsafe_allow_html=True)
 c1, c2, c3, c4 = st.columns(4)
@@ -210,7 +226,7 @@ def card_btn(url, text, style="primary"):
 
 with c1:
     st.markdown("#### European Fellowship in Nuclear Medicine (Hamburg, Germany)")
-    st.markdown('<div class="institution-text-card">UEMS/EBNM (Hamburg, Germany)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="institution-text-card">UEMS/EBNM</div>', unsafe_allow_html=True)
     st.markdown("**Status: FEBNM Fellow**")
     st.markdown(card_btn(URL_EBNM_CERT, "View Fellowship Certificate"), unsafe_allow_html=True)
     st.markdown(card_btn(URL_EBNM_VERIFY, "Verification", "sec"), unsafe_allow_html=True)
@@ -224,29 +240,30 @@ with c2:
 
 with c3:
     st.markdown("#### European Board of Nuclear Cardiology")
-    st.markdown('<div class="institution-text-card">EACVI (Nuclear Cardiology)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="institution-text-card">EACVI Nuclear Cardiology Certification</div>', unsafe_allow_html=True)
     st.markdown("**Status: Fully Certified**")
     st.markdown(card_btn(URL_EACVI_CERT, "View Certificate"), unsafe_allow_html=True)
     st.markdown(card_btn(URL_EACVI_VERIFY, "Verification", "sec"), unsafe_allow_html=True)
 
 with c4:
     st.markdown("#### Jordanian Board of Nuclear Medicine")
-    st.markdown('<div class="institution-text-card">Jordanian Medical Council (JMC)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="institution-text-card">Jordanian Medical Council</div>', unsafe_allow_html=True)
     st.markdown("**Status: Board Certified Specialist**")
     st.markdown(card_btn(URL_JORDAN_BOARD, "View Board Certificate"), unsafe_allow_html=True)
-    st.markdown(card_btn(URL_JORDAN_LICENSE, "My Professional License", "sec"), unsafe_allow_html=True)
+    # FIX: Button is now Primary Style with text "Professional License"
+    st.markdown(card_btn(URL_JORDAN_LICENSE, "Professional License"), unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# 6. TIER 2: CLINICAL EXPERIENCE
+# 5. CLINICAL EXPERIENCE
 # -----------------------------------------------------------------------------
 st.markdown("<h3>🏥 Clinical Experience & Residency</h3>", unsafe_allow_html=True)
 
 e1, e2 = st.columns(2)
 
 with e1:
-    st.markdown("""
-    <div class="exp-card">
-        <div style="font-size:2rem; color:#FB7185;">🎓</div>
+    st.markdown(f"""
+    <div style="background:rgba(255,255,255,0.03); padding:25px; border-radius:10px; border-left:4px solid #22D3EE; height:100%;">
+        <div style="font-size:2rem;">🎓</div>
         <h4 style="margin-top:0;">Joint Nuclear Medicine Residency Program</h4>
         <p class="experience-institute">King Hussein Cancer Center (KHCC) & University of Jordan</p>
         <p>Comprehensive residency training covering theranostics, advanced oncological and general nuclear medicine.</p>
@@ -255,8 +272,8 @@ with e1:
 
 with e2:
     st.markdown("""
-    <div class="exp-card">
-        <div style="font-size:2rem; color:#FB7185;">⚕️</div>
+    <div style="background:rgba(255,255,255,0.03); padding:25px; border-radius:10px; border-left:4px solid #22D3EE; height:100%;">
+        <div style="font-size:2rem;">⚕️</div>
         <h4 style="margin-top:0;">Clinical Training in Nuclear Medicine</h4>
         <p class="experience-institute">National Center for Diabetes, Endocrinology and Genetics (NCDEG)</p>        
     </div>
@@ -265,78 +282,99 @@ with e2:
 st.write("---")
 
 # -----------------------------------------------------------------------------
-# 7. TIER 3: GLOBAL MAP (Distributed Text)
+# 6. GLOBAL MAP (Pinned Associations)
 # -----------------------------------------------------------------------------
-st.markdown("<h3>🌍 Global Professional Affiliations</h3>", unsafe_allow_html=True)
+st.markdown("<h3>🌍 Global Professional Memberships</h3>", unsafe_allow_html=True)
 
-list_col1, map_col, list_col2 = st.columns([1.2, 3.5, 1.2])
+list_col1, map_col, list_col2 = st.columns([1.5, 3, 1.5])
 
+# FIX: Added coordinates for ALL associations to populate the globe
+lats = [38.9, 48.2, 31.9, -35.3, 51.5, 45.4, 46.2, 39.0] 
+lons = [-77.0, 16.3, 35.9, 149.1, -0.1, -75.7, 6.1, -77.4]
+hover_txt = [
+    "<b>USA:</b> SNMMI, ACNM, ASNC, SCCT, ASCO, ARRS",
+    "<b>EUROPE:</b> EANM, EACVI, ESMO, ESR",
+    "<b>JORDAN/ME:</b> ARSNM, JMA",
+    "<b>OCEANIA:</b> ANZSNM",
+    "<b>UK:</b> BNMS",
+    "<b>CANADA:</b> CANM",
+    "<b>GLOBAL:</b> WiN Global, IC-OS",
+    "<b>INFORMATICS:</b> SIIM"
+]
+
+fig = go.Figure(data=go.Scattergeo(
+    lon = lons, lat = lats, text = hover_txt, mode = 'markers',
+    marker = dict(size=15, color='#F0C642', line=dict(width=2, color='#22D3EE'))
+))
+
+fig.update_geos(
+    projection_type="orthographic", showcountries=True, countrycolor="#555",
+    showland=True, landcolor="#14332A", 
+    showocean=True, oceancolor="#0F201B", 
+    bgcolor="#0F201B"
+)
+fig.update_layout(height=600, margin={"r":0,"t":0,"l":0,"b":0}, paper_bgcolor="#0F201B", font=dict(color="white"))
+
+# List 1 (North America & Europe)
 with list_col1:
     st.markdown("""
-    <div style="background:rgba(0,0,0,0.2); padding:15px; border-radius:10px; border:1px solid #F0C642; margin-top:25px; height: 500px;">
-    <p style="color:#F0C642; font-weight:bold; font-size:1.1rem;">AMERICA & EUROPE</p>
-    <ul style="list-style-type: '🌿 '; padding-left: 20px; font-size: 1.05rem;">
-        <li>SNMMI (Soc. of NM & MI)</li>
-        <li>ACNM (Amer. College of NM)</li>
-        <li>ASNC (Amer. Soc. of NC)</li>
-        <li>EANM (European Assoc. of NM)</li>
-        <li>BNMS (British NM Society)</li>
-    </ul>
+    <div style="background:rgba(0,0,0,0.2); padding:15px; border-radius:10px; border:1px solid #F0C642; margin-top:25px;">
+    <div class="global-header">North America & Europe</div>
+    <div class="global-list">
+    • Society of Nuclear Medicine and Molecular Imaging (SNMMI)<br>
+    • American College of Nuclear Medicine (ACNM)<br>    
+    • American Society of Nuclear Cardiology (ASNC)<br>    
+    • Society of Cardiovascular Computed Tomography (SCCT)<br>
+    • American Society of Clinical Oncology (ASCO)<br>
+    • American Roentgen Ray Society (ARRS)<br>
+    • The Canadian Association of Nuclear Medicine (CANM)<br>
+    <hr style="border-color:#22D3EE;">
+    • European Association of Nuclear Medicine (EANM)<br>
+    • European Association of Cardiovascular Imaging (EACVI)<br>
+    • European Society for Medical Oncology (ESMO)<br>
+    • European Society of Radiology (ESR)<br>
+    • British Nuclear Medicine Society (BNMS)<br>
+    </div>
     </div>
     """, unsafe_allow_html=True)
 
 with map_col:
-    # Map Data
-    lats = [45, 50, 31, -25, 0]
-    lons = [-100, 15, 36, 135, 0]
-    hover_txt = ["North America", "Europe", "Middle East", "Oceania", "Global"]
-
-    fig = go.Figure(data=go.Scattergeo(
-        lon = lons, lat = lats, text = hover_txt, mode = 'markers',
-        marker = dict(size=25, color='#F0C642', line=dict(width=2, color='#22D3EE'))
-    ))
-
-    # 3D Globe Style
-    fig.update_geos(
-        projection_type="orthographic", showcountries=True, countrycolor="#555",
-        showland=True, landcolor="#14332A", 
-        showocean=True, oceancolor="#0F172A", 
-        bgcolor="#0F172A"
-    )
-    fig.update_layout(height=600, margin={"r":0,"t":0,"l":0,"b":0}, paper_bgcolor="#0F172A", font=dict(color="white"))
-
     st.plotly_chart(fig, use_container_width=True)
 
+# List 2 (Middle East & Global)
 with list_col2:
     st.markdown("""
-    <div style="background:rgba(0,0,0,0.2); padding:15px; border-radius:10px; border:1px solid #F0C642; margin-top:25px; height: 500px;">
-    <p style="color:#F0C642; font-weight:bold; font-size:1.1rem;">MIDDLE EAST & GLOBAL</p>
-    <ul style="list-style-type: '🌿 '; padding-left: 20px; font-size: 1.05rem;">
-        <li>ARSNM (Arab Soc. of NM)</li>
-        <li>JMA (Jordan Medical Assoc.)</li>
-        <li>ANZSNM (Australia/NZ Soc.)</li>
-        <li>WiN Global (Women in Nuclear)</li>
-        <li>IC-OS (Cardio-Oncology Soc.)</li>
-        <li>SIIM (Imaging Informatics)</li>
-    </ul>
+    <div style="background:rgba(0,0,0,0.2); padding:15px; border-radius:10px; border:1px solid #F0C642; margin-top:25px;">
+    <div class="global-header">MIDDLE EAST & GLOBAL</div>
+    <div class="global-list">
+    • Arab Society of Nuclear Medicine (ARSNM)<br>
+    • Jordan Medical Association<br>
+    <hr style="border-color:#22D3EE;">
+    • Australian and New Zealand Society of Nuclear Medicine (ANZSNM)<br>
+    <hr style="border-color:#22D3EE;">
+    • Women in Nuclear Global (WiN Global)<br>
+    • International Cardio-Oncology Society (IC-OS)<br>
+    • Society for Imaging Informatics in Medicine (SIIM)<br>
+    </div>
     </div>
     """, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# 8. TIER 4: COMPETENCIES & HONORS
+# 7. COMPETENCIES & HONORS
 # -----------------------------------------------------------------------------
-st.markdown("<h3>☢️ Clinical Competencies & Honors</h3>", unsafe_allow_html=True)
+st.markdown("<h3>☢️ Clinical Competencies & Hands-On Training</h3>", unsafe_allow_html=True)
 z1, z2, z3 = st.columns(3)
 
 with z1:
     st.markdown("""
-    <div class="exp-card">
+    <div style="background:rgba(20,50,40,0.4); padding:25px; border-radius:4px; border-left:4px solid #22D3EE; height:100%;">
     <div style="font-size:2rem; color:#FB7185;">🫀</div>
     <h4>Nuclear Cardiology</h4>
-    <p style="color:#22D3EE; font-weight:bold; margin-bottom: 5px;">Modalities:</p>
+    <p style="color:#22D3EE; font-weight:bold; margin-bottom: 5px;">Diagnostic Application and Modalities:</p>
     <ul>
-    <li>Cardiac Amyloidosis & Sarcoidosis</li>
-    <li>Myocardial Blood Flow (MBF) incl. F-18 PET</li>
+    <li>Cardiac Amyloidosis</li>
+    <li>Cardiac Sarcoidosis</li>
+    <li>Myocardial Blood Flow (MBF) including F-18 myocardial perfusion PET</li>
     <li>D-SPECT</li>
     </ul>
     <p style="color:#22D3EE; font-weight:bold; margin-bottom: 5px;">Software:</p>
@@ -351,15 +389,17 @@ with z1:
 
 with z2:
     st.markdown("""
-    <div class="exp-card">
+    <div style="background:rgba(20,50,40,0.4); padding:25px; border-radius:4px; border-left:4px solid #22D3EE; height:100%;">
     <div style="font-size:2rem; color:#FB7185;">🧠</div>
     <h4>Nuclear Neurology</h4>
-    <p style="color:#22D3EE; font-weight:bold; margin-bottom: 5px;">Modalities:</p>
+    <p style="color:#22D3EE; font-weight:bold; margin-bottom: 5px;">Diagnostic Application and Modalities:</p>
     <ul>
     <li>Neuro-PET (Dementia/Epilepsy)</li>
     <li>DaTscan Imaging</li>
-    <li>FDG-PET in Non-Alzheimer’s</li>
-    <li>Amyloid PET/CT</li>
+    <li>FDG-PET in Non-Alzheimer’s Dementia</li>
+    <li>FDG-PET/CT in Dementia</li>
+    <li>FDG-PET/CT in Temporal Lobe Epilepsy</li>
+    <li>Amyloid PET/CT Imaging in Dementia</li>
     </ul>
     <p style="color:#22D3EE; font-weight:bold; margin-bottom: 5px;">Software:</p>
     <ul>
@@ -370,19 +410,19 @@ with z2:
 
 with z3:
     st.markdown("""
-    <div class="exp-card">
+    <div style="background:rgba(20,50,40,0.4); padding:25px; border-radius:4px; border-left:4px solid #22D3EE; height:100%;">
     <div style="font-size:2rem; color:#FB7185;">🏆</div>
     <h4>Professional Honors & Society Involvement</h4>
     <ul>
-    <li>ASNC Future Leaders Program: Selected as one of the "Next Generation of Nuclear Cardiology" leaders, Toronto, Canada</li>
-    <li>Speaker & Faculty Member: Nuclear Cardiology Now Middle East Conference (ASNC)</li>
-    <li>Grant Reviewer: 2025 SNMMI Molecular Imaging Research Grant for Junior Academic Faculty ($105,000 grant)</li>
+    <li><b>ASNC Future Leaders Program:</b> Selected as one of the "Next Generation of Nuclear Cardiology" carefully selected individuals, Toronto, Canada.</li><br>
+    <li><b>Speaker & Faculty Member:</b> Nuclear Cardiology Now: Middle East Conference, American Society of Nuclear Cardiology (ASNC).</li><br>
+    <li><b>Grant Reviewer:</b> 2025 SNMMI Molecular Imaging Research Grant for Junior Academic Faculty ($105,000 grant).</li>
     </ul>
     </div>
     """, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# 9. FOOTER (Elegant)
+# 8. FOOTER
 # -----------------------------------------------------------------------------
 st.write("---")
 f1, f2, f3 = st.columns(3)
@@ -399,7 +439,7 @@ with f2:
     st.markdown("""
     <div style="border-left:4px solid #F0C642; padding-left:15px;">
         <div class="footer-label">Committee Membership 🤝</div>
-        <div>ASNC International Committee & ACNM Radiopharmaceutical Therapy Committee.</div>
+        <div class="footer-text">ASNC International Committee & ACNM Radiopharmaceutical Therapy Committee.</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -407,6 +447,6 @@ with f3:
     st.markdown("""
     <div style="border-left:4px solid #F0C642; padding-left:15px;">
         <div class="footer-label">Publications 📚</div>
-        <div>10+ Peer-Reviewed Articles, Abstracts, and Learning Modules (First Author/Co-Author).</div>
+        <div class="footer-text">10+ Peer-Reviewed Articles, Abstracts, and Learning Modules (First Author/Co-Author).</div>
     </div>
     """, unsafe_allow_html=True)
